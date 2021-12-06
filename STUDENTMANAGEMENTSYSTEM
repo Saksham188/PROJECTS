@@ -1,0 +1,209 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void ListStudent();
+void AddStudent();
+void UpdateStudent();
+void DeleteStudent();
+void SearchStudent();
+struct Students
+{
+    int RollNo;
+    char Name[50];
+    int Class;
+    char Section;
+    int Age;
+} std;
+
+main()
+{
+    int choice;
+    int t = 1;
+    while (t)
+    {
+
+        printf("\n\t\t\t\tPress 1 to List Student ");
+        printf("\n\t\t\t\tPress 2 to Add Student ");
+        printf("\n\t\t\t\tPress 3 to Delete Student ");
+        printf("\n\t\t\t\tPress 4 to Update Student ");
+        printf("\n\t\t\t\tPress 5 to Search Student ");
+        printf("\n\t\t\t\tPress 6 to Exit ");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+        {
+            ListStudent();
+            break;
+        }
+        case 2:
+        {
+            AddStudent();
+            break;
+        }
+        case 3:
+        {
+            DeleteStudent();
+            break;
+        }
+        case 4:
+        {
+            UpdateStudent();
+            break;
+        }
+        case 5:
+        {
+            SearchStudent();
+            break;
+        }
+        case 6:
+        {
+            exit(0);
+        }
+        default:
+        {
+            printf("Wrong choice entered");
+        }
+        }
+    }
+}
+void ListStudent()
+{
+   FILE *fp;
+    fp = fopen("Student.txt", "rb+");
+
+    if (fp == NULL)
+    {
+        printf("File not found");
+    }
+    else
+    {
+        fflush(stdin);
+        while (fread(&std, sizeof(std), 1, fp))
+        {
+            printf("RollNo=%d \t Name=%s \t Class=%d \t Section=%c \t Age=%d \n", std.RollNo, std.Name, std.Class, std.Section, std.Age);
+        }
+        fclose(fp);
+        printf("\nStudent listed successfully");
+    }
+}
+void AddStudent()
+{
+    char YesNo;
+    int i = 1;
+    while (i)
+    {
+        FILE *fp;
+        fp = fopen("Student.txt", "ab+");
+
+        printf("Enter RollNumber of student:");
+        fflush(stdin);
+        scanf("%d", &std.RollNo);
+        printf("Enter Name of student: ");
+        fflush(stdin);
+        gets(std.Name);
+        fflush(stdin);
+        printf("Enter Class of student: ");
+        scanf("%d", &std.Class);
+        printf("Enter Section of student: ");
+        fflush(stdin);
+        scanf("%c", &std.Section);
+        printf("Enter Age of student: ");
+        fflush(stdin);
+        scanf("%d", &std.Age);
+
+        fwrite(&std, sizeof(std), 1, fp);
+        fclose(fp);
+
+        printf("Student Added Successfully\n");
+        printf("Do you want to enter more records Y/N:");
+        fflush(stdin);
+        scanf("%c", &YesNo);
+
+        if (toupper(YesNo) != 'Y')
+            i = 0;
+    }
+}
+void UpdateStudent()
+{
+
+   FILE *fp;
+     fp = fopen("Student.txt", "rb+");
+     int rollno;
+     printf("Enter RollNumber u want to search: ");
+     fflush(stdin);
+     scanf("%d",&rollno);
+
+     long int size;
+     size=sizeof(std);
+
+    while(fread(&std,size,1,fp))
+    {
+        if(std.RollNo==rollno)
+        {
+            printf("Enter updated record: ");
+            printf("\nEnter Name of student: ");
+        fflush(stdin);
+        gets(std.Name);
+        fflush(stdin);
+        printf("Enter Class of student: ");
+        scanf("%d", &std.Class);
+        printf("Enter Section of student: ");
+        fflush(stdin);
+        scanf("%c", &std.Section);
+        printf("Enter Age of student: ");
+        fflush(stdin);
+        scanf("%d", &std.Age);
+
+        fseek(fp,-size,SEEK_CUR);
+        fwrite(&std,size,1,fp);
+        printf("Record Updated Successfully.");
+        break;
+        }
+    }
+    fclose(fp);
+
+}
+void DeleteStudent()
+{
+     FILE *fp,*fp2;
+
+         int rollno;
+     printf("Enter RollNumber you want to delete: ");
+     scanf("%d",&rollno);
+
+     fp=fopen("Student.txt","rb+");
+     fp2=fopen("Temp.txt","wb+");
+
+    while(fread(&std,sizeof(std),1,fp))
+    {
+        if(rollno!=std.RollNo)
+        {
+            fwrite(&std,sizeof(std),1,fp2);
+        }
+    }
+    fclose(fp);
+    fclose(fp2);
+    remove("Student.txt");
+    rename("Temp.txt","Student.txt");
+    printf("Student Deleted successfully");
+}
+void SearchStudent()
+{
+    FILE *fp;
+    fp=fopen("Student.txt","rb+");
+    int rollnum;
+    printf("Enter Roll Number of student u want to search: ");
+    scanf("%d",&rollnum);
+    while(fread(&std,sizeof(std),1,fp))
+    {
+        if(rollnum==std.RollNo)
+        {
+            printf("RollNo=%d \t Name=%s \t Class=%d \t Section=%c \t Age=%d \n", std.RollNo, std.Name, std.Class, std.Section, std.Age);
+        }
+    }
+    fclose(fp);
+    printf("Record search successfully");
+}
