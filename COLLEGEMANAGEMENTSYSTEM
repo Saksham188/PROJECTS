@@ -1,0 +1,1133 @@
+
+#include <fstream>
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+#include <windows.h>
+
+using namespace std;
+
+class Student
+{
+    int ID, Age, IsHosteller, TotalFees, NumDays, PhoneNum, DateOfBirth, MonthOfBirth, YearOfBirth;
+    float Marks[5], TotalMarks, Percentage, CG, FeeDeposited, FeeRemaining;
+    char Name[50], Gender[10], Stream[20], FatherName[50];
+
+public:
+    Student()
+    {
+        ID = 0;
+        Age = 0;
+        strcpy(Name, "no Name");
+        strcpy(Gender, "no Gender");
+        strcpy(FatherName, "no Name");
+        strcpy(Stream, "no Stream");
+
+        for (int i = 0; i < 5; i++)
+        {
+            Marks[i] = 0;
+        }
+        TotalMarks = 0, Percentage = 0, CG = 0;
+        IsHosteller = 0;
+
+        FeeDeposited = 0, FeeRemaining = 0;
+
+        TotalFees = 258000;
+    }
+    void getStudentData()
+    {
+        int i = 1;
+
+        fflush(stdin);
+        while (i)
+        {
+            try
+            {
+                cout << "\n Enter Id of Student: ";
+                cin >> ID;
+                if (ID <= 0)
+                    throw 1.1;
+                else
+                    i = 0;
+            }
+            catch (double b)
+            {
+                cout << " Wrong ID Entered.Enter Again.";
+            }
+        }
+
+        fflush(stdin);
+        cout << " Enter Name  of Student: ";
+        cin.getline(Name, 40);
+        fflush(stdin);
+        i = 1;
+        while (i)
+        {
+            try
+            {
+                cout << " Enter Age of Student: ";
+                cin >> Age;
+
+                if (Age <= 0 || Age > 25)
+                    throw 1;
+                else
+                    i = 0;
+            }
+            catch (int x)
+            {
+                cout << "\n Age Cannot be less than 0 or greater than 25.Enter again\n";
+            }
+        }
+        fflush(stdin);
+        cout << " Enter Father Name of Student: ";
+        cin.getline(FatherName, 40);
+        fflush(stdin);
+        cout << " Enter Gender of Student: ";
+        cin.getline(Gender, 8);
+        fflush(stdin);
+
+        int k = 1;
+        while (k)
+        {
+            try
+            {
+                cout << " Enter Date of Birth of Student: ";
+                fflush(stdin);
+                cin >> DateOfBirth;
+                fflush(stdin);
+                cout << " Enter Month of Birth of Student: ";
+                fflush(stdin);
+                cin >> MonthOfBirth;
+                fflush(stdin);
+                cout << " Enter Year of Birth of Student: ";
+                fflush(stdin);
+                cin >> YearOfBirth;
+                fflush(stdin);
+
+                if (DateOfBirth > 31 || DateOfBirth < 0)
+                    throw 1;
+                if (MonthOfBirth > 12 || MonthOfBirth < 0)
+                    throw 1.8;
+                else
+                    k = 0;
+            }
+            catch (int d)
+            {
+                cout << "\n Wrong Date Entered.Enter Again: \n";
+            }
+            catch (double d)
+            {
+                cout << "\n Wrong Month Entered.Enter Again: \n";
+            }
+        }
+        fflush(stdin);
+        cout << " Enter Stream of Student: ";
+        cin.getline(Stream, 15);
+        fflush(stdin);
+        cout << " Enter 6 Digit PhoneNumber of Student: ";
+        cin >> PhoneNum;
+        cout << " Enter Hostel Occupied or not:   Press 1 for YES and Press 0  for NO:  ";
+        fflush(stdin);
+        cin >> IsHosteller;
+        fflush(stdin);
+        fflush(stdin);
+
+        int j = 1;
+        while (j)
+        {
+            cout << " Enter marks of Student in 5 subjects: ";
+
+            try
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    cin >> Marks[i];
+                    cout << " ";
+
+                    if (Marks[i] < 0 || Marks[i] > 100)
+                        throw 1;
+                }
+                j = 0;
+            }
+            catch (int x)
+            {
+                cout << "\n Marks Cannot be Less than 0 or Greater than 100.Enter again\n";
+            }
+        }
+
+        fflush(stdin);
+
+        CalculateTotalFees();
+        DepositFee();
+        GetCg();
+        CalculateDues();
+    }
+
+    void DepositFee()
+    {
+        int p = 1;
+        while (p)
+        {
+            try
+            {
+                cout << "\n Total Fee: " << TotalFees;
+                cout << "\n Enter Fee Deposited: ";
+                fflush(stdin);
+                cin >> FeeDeposited;
+
+                if (FeeDeposited > TotalFees || FeeDeposited < 0)
+                    throw 7.8;
+                else
+                    p = 0;
+            }
+            catch (double b)
+            {
+                cout << "\n Wrong Fee Entered. Enter Again.\n";
+            }
+        }
+    }
+
+    void CalculateTotalFees()
+    {
+        TotalFees = 258000;
+        if (IsHosteller)
+        {
+            cout << "\n Enter Number of days stayed in hostel :";
+            fflush(stdin);
+            cin >> NumDays;
+
+            TotalFees += NumDays * 400;
+        }
+    }
+    void CalculateDues()
+    {
+        int t = 1;
+
+        while (t)
+        {
+            if (FeeDeposited > TotalFees || FeeDeposited < 0)
+            {
+                cout << "\n Wrong Amount Entered.Enter Again.";
+                DepositFee();
+            }
+            else
+            {
+                FeeRemaining = TotalFees - FeeDeposited;
+                t = 0;
+            }
+        }
+    }
+
+    void GetCg()
+    {
+        TotalMarks = 0, CG = 0, Percentage = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            TotalMarks += Marks[i];
+        }
+        Percentage = TotalMarks * 100 / 500;
+        CG = Percentage * 9.5 / 100;
+    }
+
+    void showStudentData()
+    {
+        cout << "\n ****************************************\n";
+        cout << "\n StudentDetails: \n";
+        cout << "\n ID: " << ID;
+        cout << "\n Name : " << Name;
+        cout << "\n Age: " << Age;
+        cout << "\n Student Gender: " << Gender;
+        cout << "\n Student Stream : " << Stream;
+        cout << "\n Father Name : " << FatherName;
+        cout << "\n PhoneNumber: " << PhoneNum;
+        cout << "\n Date Of Birth of Student: " << DateOfBirth << "/" << MonthOfBirth << "/" << YearOfBirth;
+
+        cout << "\n Marks of Student in 5 subjects are : ";
+
+        for (int i = 0; i < 5; i++)
+        {
+            cout << Marks[i] << " ";
+        }
+        cout << "\n Total Marks of Student are: " << TotalMarks;
+        cout << "\n Percentage of Student is: " << Percentage;
+        cout << "\n CGPA of Student is: " << CG;
+
+        if (IsHosteller)
+            cout << "\n Hostel Occupation: "
+                 << "Yes";
+        else
+            cout << "\n Hostel Occupation: "
+                 << "No";
+
+        cout << "\n Total Fee: " << TotalFees;
+        cout << "\n Fee Deposited: " << FeeDeposited;
+
+        if (FeeRemaining == 0)
+            cout << "\n You Have Submitted Entire Fees.";
+        else
+            cout << "\n Fee Remaining: " << FeeRemaining;
+
+        cout << "\n ****************************************\n";
+    }
+    int storeStudent();
+    void viewAllStudents();
+    void FindStudent();
+    void UpdateStudent();
+    void DeleteStudent();
+};
+int Student::storeStudent()
+{
+    if (ID == 0)
+    {
+
+        cout << " Student data not initialized.";
+        return 0;
+    }
+    else
+    {
+        ofstream fout;
+        fout.open("FileStudentTemp.dat", ios::app | ios::binary);
+        fout.write((char *)this, sizeof(*this));
+        fout.close();
+        cout << "\n Student Added Successfully";
+        return (1);
+    }
+}
+void Student::viewAllStudents()
+{
+    ifstream fin;
+    fin.open("FileStudentTemp.dat", ios::in | ios::binary);
+
+    if (!fin)
+        cout << " File not found";
+    else
+    {
+        fin.read((char *)this, sizeof(*this));
+
+        while (!fin.eof())
+        {
+            showStudentData();
+            fin.read((char *)this, sizeof(*this));
+        }
+        fin.close();
+    }
+}
+void Student::FindStudent()
+{
+    int id, count = 0;
+    cout << " Enter Id of Student you Want to Find: ";
+    cin >> id;
+    ifstream fin;
+    fin.open("FileStudentTemp.dat", ios::in | ios::binary);
+    if (!fin)
+        cout << " File not found";
+    else
+    {
+        fin.read((char *)this, sizeof(*this));
+        while (!fin.eof())
+        {
+            if (id == ID)
+            {
+                showStudentData();
+                break;
+            }
+            else
+                count = 1;
+            fin.read((char *)this, sizeof(*this));
+        }
+        if (fin.eof() && count == 1)
+            cout << "\n Student ID Does Not Exist.";
+        fin.close();
+    }
+}
+void Student::UpdateStudent()
+{
+    int id, count = 0;
+    cout << " Enter ID of Student you want to Update: ";
+    cin >> id;
+    fstream file;
+    file.open("FileStudentTemp.dat", ios::in | ios::out | ios::ate | ios::binary);
+    file.seekg(0);
+    file.read((char *)this, sizeof(*this));
+    while (!file.eof())
+    {
+        if (id == ID)
+        {
+            cout << " Data found.\n Enter Updated Record.\n";
+            count = 1;
+            getStudentData();
+            file.seekp(file.tellp() - sizeof(*this));
+            file.write((char *)this, sizeof(*this));
+        }
+        file.read((char *)this, sizeof(*this));
+    }
+    if (file.eof() && count == 0)
+        cout << "\n Student Not Found.";
+    else
+        cout << "\n Student updated successfully\n";
+}
+void Student::DeleteStudent()
+{
+    int id, count = 0;
+    cout << " Enter ID of Student you want to delete: ";
+    cin >> id;
+
+    ifstream fin;
+    ofstream fout;
+    fin.open("FileStudentTemp.dat", ios::in | ios::binary);
+    if (!fin)
+        cout << " File not found";
+    else
+    {
+        fout.open("Studentfile.dat", ios::out | ios::binary);
+        fin.read((char *)this, sizeof(*this));
+        while (!fin.eof())
+        {
+            if (id != ID)
+            {
+                fout.write((char *)this, sizeof(*this));
+            }
+            fin.read((char *)this, sizeof(*this));
+        }
+        fin.close();
+        fout.close();
+
+        remove("FileStudentTemp.dat");
+        rename("Studentfile.dat", "FileStudentTemp.dat");
+    }
+    cout << "\n Student deleted successfully.";
+}
+
+class Professor
+{
+private:
+    int ID, Age, DateOfJoin, MonthOfJoin, YearOfJoin, PhoneNumber, DateOfBirth, MonthOfBirth, YearOfBirth, i, j, loop;
+    float Salary;
+    char Name[50], Department[20], Gender[10], FatherName[50], Qualification[90];
+
+public:
+    Professor()
+    {
+        i = 1;
+        j = 1;
+        loop = 1;
+    }
+    void AddProfessorData()
+    {
+        while (i)
+        {
+            try
+            {
+                cout << "\n Enter Id of Professor: ";
+                cin >> ID;
+                if (ID <= 0)
+                    throw 1.1;
+                else
+                    i = 0;
+            }
+            catch (double b)
+            {
+                cout << " Wrong ID Entered.Enter Again.";
+            }
+        }
+
+        cout << " Enter Name of Professor: ";
+        fflush(stdin);
+        cin.getline(Name, 45);
+        fflush(stdin);
+
+        i = 1, j = 1;
+        while (i)
+        {
+            try
+            {
+                cout << " Enter Age of Professor: ";
+                cin >> Age;
+
+                if (Age < 25)
+                    throw 1;
+                else
+                    i = 0;
+            }
+            catch (int x)
+            {
+                cout << "\n Age Cannot be less than 25.Enter again\n";
+            }
+        }
+        cout << " Enter FatherName of Professor: ";
+        fflush(stdin);
+        cin.getline(FatherName, 45);
+        fflush(stdin);
+
+        cout << " Enter Gender of Professor: ";
+        fflush(stdin);
+        cin.getline(Gender, 8);
+        fflush(stdin);
+        i = 1;
+        while (i)
+        {
+            try
+            {
+                cout << " Enter Date of Birth of Professor: ";
+                fflush(stdin);
+                cin >> DateOfBirth;
+                fflush(stdin);
+                cout << " Enter Month of Birth of Professor: ";
+                fflush(stdin);
+                cin >> MonthOfBirth;
+                fflush(stdin);
+                cout << " Enter Year of Birth of Professor: ";
+                fflush(stdin);
+                cin >> YearOfBirth;
+                fflush(stdin);
+
+                if (DateOfBirth > 31 || DateOfBirth < 0)
+                    throw 1;
+                if (MonthOfBirth > 12 || MonthOfBirth < 0)
+                    throw 1.8;
+                else
+                    i = 0;
+            }
+            catch (int d)
+            {
+                cout << "\n Wrong Date Entered.Enter Again: \n";
+            }
+            catch (double d)
+            {
+                cout << "\n Wrong Month Entered.Enter Again: \n";
+            }
+        }
+        cout << " Enter Department of Professor:CSE,IT,ECE,BioTech: \n ";
+        fflush(stdin);
+        cin.getline(Department, 15);
+        fflush(stdin);
+
+        while (j)
+        {
+            try
+            {
+                cout << " Enter Salary of Professor: ";
+                cin >> Salary;
+
+                if (Salary <= 0)
+                    throw 2.5;
+                else
+                    j = 0;
+            }
+            catch (double d)
+            {
+                cout << "\n Salary cannot be 0 or negative.Enter Again\n";
+            }
+        }
+        i = 1;
+        while (i)
+        {
+            try
+            {
+                cout << " Enter Date of Join of Professor: ";
+                fflush(stdin);
+                cin >> DateOfJoin;
+                fflush(stdin);
+                cout << " Enter Month of Join of Professor: ";
+                fflush(stdin);
+                cin >> MonthOfJoin;
+                fflush(stdin);
+                cout << " Enter Year of Join of Professor: ";
+                fflush(stdin);
+                cin >> YearOfJoin;
+                fflush(stdin);
+
+                if (DateOfJoin > 31 || DateOfJoin < 0)
+                    throw 1;
+                if (MonthOfJoin > 12 || MonthOfJoin < 0)
+                    throw 1.8;
+                else
+                    i = 0;
+            }
+            catch (int d)
+            {
+                cout << "\n Wrong Date Entered.Enter Again: \n";
+            }
+            catch (double d)
+            {
+                cout << "\n Wrong Month Entered.Enter Again: \n";
+            }
+        }
+
+        cout << " Enter Educational Qualification of Professor: ";
+        fflush(stdin);
+        cin.getline(Qualification, 75);
+        fflush(stdin);
+
+        cout << " Enter 6 Digit Phone Number of Professor: ";
+        cin >> PhoneNumber;
+    }
+    void ShowProfessorData()
+    {
+        cout << "\n ****************************************\n";
+        cout << "\n ProfessorDetails: \n";
+        cout << "\n Name of Professor : " << Name;
+        cout << "\n Professor ID :" << ID;
+        cout << "\n Professor Age: " << Age;
+        cout << "\n Professor Gender: " << Gender;
+        cout << "\n Date Of Birth of Professor: " << DateOfBirth << "/" << MonthOfBirth << "/" << YearOfBirth;
+        cout << "\n FatherName of Professor : " << FatherName;
+        cout << "\n PhoneNumber: " << PhoneNumber;
+        cout << "\n Qualification of Professor : " << Qualification;
+        cout << "\n Salary Of Professor:" << Salary;
+        cout << "\n Department of Professor: " << Department;
+        cout << "\n Date Of Joining of Professor: " << DateOfJoin << "/" << MonthOfJoin << "/" << YearOfJoin;
+        cout << "\n ****************************************\n";
+    }
+    int storeProfessor();
+    void viewAllProfessor();
+    void FindProfessor();
+    void UpdateProfessor();
+    void DeleteProfessor();
+};
+int Professor::storeProfessor()
+{
+    if (ID == 0)
+    {
+
+        cout << " Professor data not initialized.";
+        return 0;
+    }
+    else
+    {
+        ofstream fout;
+        fout.open("file2.dat", ios::app | ios::binary);
+        fout.write((char *)this, sizeof(*this));
+        fout.close();
+        cout << "\n Professor Added Successfully";
+        return (1);
+    }
+}
+void Professor::viewAllProfessor()
+{
+    ifstream fin;
+    fin.open("file2.dat", ios::in | ios::binary);
+
+    if (!fin)
+        cout << " File not found";
+    else
+    {
+        fin.read((char *)this, sizeof(*this));
+        while (!fin.eof())
+        {
+            ShowProfessorData();
+            fin.read((char *)this, sizeof(*this));
+        }
+        fin.close();
+    }
+}
+void Professor::FindProfessor()
+{
+    int id, count = 0;
+    cout << " Enter Id of Professor you Want to Find: ";
+    cin >> id;
+    ifstream fin;
+    fin.open("file2.dat", ios::in | ios::binary);
+    if (!fin)
+        cout << "File not found";
+    else
+    {
+        fin.read((char *)this, sizeof(*this));
+        while (!fin.eof())
+        {
+            if (id == ID)
+            {
+                ShowProfessorData();
+                break;
+            }
+            else
+                count = 1;
+            fin.read((char *)this, sizeof(*this));
+        }
+        if (fin.eof() && count == 1)
+            cout << "\n Professor ID Does Not Exist.";
+        fin.close();
+    }
+}
+
+void Professor::UpdateProfessor()
+{
+    int id, count = 0;
+    cout << " Enter ID of Professor you want to Update: ";
+    cin >> id;
+    fstream file;
+    file.open("file2.dat", ios::in | ios::out | ios::ate | ios::binary);
+    file.seekg(0);
+    file.read((char *)this, sizeof(*this));
+    while (!file.eof())
+    {
+        if (id == ID)
+        {
+            cout << "\n Data found.\n Enter Updated Record.\n";
+            count = 1;
+            AddProfessorData();
+            file.seekp(file.tellp() - sizeof(*this));
+            file.write((char *)this, sizeof(*this));
+        }
+        file.read((char *)this, sizeof(*this));
+    }
+    if (file.eof() && count == 0)
+        cout << "\n Professor Data Not Found.";
+    else
+        cout << "\n Professor updated successfully\n";
+}
+void Professor::DeleteProfessor()
+{
+    int id;
+    cout << " Enter ID of Professor you want to delete: ";
+    cin >> id;
+    ifstream fin;
+    ofstream fout;
+    fin.open("file2.dat", ios::in | ios::binary);
+    if (!fin)
+        cout << "File not found";
+    else
+    {
+        fout.open("tempfile.dat", ios::out | ios::binary);
+        fin.read((char *)this, sizeof(*this));
+        while (!fin.eof())
+        {
+            if (id != ID)
+            {
+                fout.write((char *)this, sizeof(*this));
+            }
+            fin.read((char *)this, sizeof(*this));
+        }
+        fin.close();
+        fout.close();
+        remove("file2.dat");
+        rename("tempfile.dat", "file2.dat");
+    }
+    cout << " Professor deleted successfully.";
+}
+
+class Book
+{
+    int BookID, TotalCopies, PublicationDate, PublicationMonth, PublicationYear, ISBN;
+    char BookName[70], AuthorName[70], Publisher[70];
+    float Price;
+
+public:
+    Book()
+    {
+        BookID = 0;
+        TotalCopies = 0;
+        strcpy(BookName, "No Name");
+        strcpy(AuthorName, "No Name");
+        Price = 0;
+    }
+    AddBookData()
+    {
+        cout << "\n Enter Book ID : ";
+        cin >> BookID;
+        cout << " Enter Book Name : ";
+        fflush(stdin);
+        cin.getline(BookName, 65);
+        fflush(stdin);
+        cout << " Enter Author Name : ";
+        fflush(stdin);
+        cin.getline(AuthorName, 68);
+        fflush(stdin);
+        cout << " Enter Publisher Name : ";
+        fflush(stdin);
+        cin.getline(Publisher, 68);
+        fflush(stdin);
+        int i = 1;
+        while (i)
+        {
+            try
+            {
+                cout << " Enter Publication Date: ";
+                fflush(stdin);
+                cin >> PublicationDate;
+                fflush(stdin);
+                cout << " Enter Publication Month : ";
+                fflush(stdin);
+                cin >> PublicationMonth;
+                fflush(stdin);
+                cout << " Enter Publication Year: ";
+                fflush(stdin);
+                cin >> PublicationYear;
+                fflush(stdin);
+
+                if (PublicationDate > 31 || PublicationDate < 0)
+                    throw 1;
+                if (PublicationMonth > 12 || PublicationMonth < 0)
+                    throw 1.8;
+                else
+                    i = 0;
+            }
+            catch (int d)
+            {
+                cout << "\n Wrong Date Entered.Enter Again: \n";
+            }
+            catch (double d)
+            {
+                cout << "\n Wrong Month Entered.Enter Again: \n";
+            }
+        }
+
+        cout << " Enter Book Price: ";
+        cin >> Price;
+        cout << "\n Enter 6 Digit Book ISBN Number : ";
+        cin >> ISBN;
+        cout << " Enter Total Number Of Copies Issued: ";
+        cin >> TotalCopies;
+    }
+    ShowBookData()
+    {
+        cout << "\n ****************************************\n";
+        cout << "\n BookDetails: \n";
+        cout << "\n BookID : " << BookID;
+        cout << "\n Book Name :" << BookName;
+        cout << "\n Author Name :" << AuthorName;
+        cout << "\n Publication Name :" << Publisher;
+        cout << "\n Book Price: " << Price;
+        cout << "\n ISBN :" << ISBN;
+        cout << "\n Date Of Publishing: " << PublicationDate << "/" << PublicationMonth << "/" << PublicationYear;
+        cout << "\n Total Copies:" << TotalCopies;
+        cout << "\n ****************************************\n";
+    }
+    int StoreBook();
+    void ViewBook();
+    void FindBook();
+    void UpdateBook();
+    void DeleteBook();
+};
+
+int Book::StoreBook()
+{
+    if (BookID == 0)
+    {
+        cout << " Book data not initialized.";
+        return 0;
+    }
+    else
+    {
+        ofstream fout;
+        fout.open("fileBook.dat", ios::app | ios::binary);
+        fout.write((char *)this, sizeof(*this));
+        fout.close();
+        cout << "\n Book Added Successfully";
+        return (1);
+    }
+}
+void Book::ViewBook()
+{
+    ifstream fin;
+    fin.open("fileBook.dat", ios::in | ios::binary);
+
+    if (!fin)
+        cout << " File not found";
+    else
+    {
+        fin.read((char *)this, sizeof(*this));
+        while (!fin.eof())
+        {
+            ShowBookData();
+            fin.read((char *)this, sizeof(*this));
+        }
+        fin.close();
+    }
+}
+void Book::FindBook()
+{
+    int id, count = 0;
+    cout << " Enter Id of Book you Want to Find: ";
+    cin >> id;
+    ifstream fin;
+    fin.open("fileBook.dat", ios::in | ios::binary);
+    if (!fin)
+        cout << " File not found";
+    else
+    {
+        fin.read((char *)this, sizeof(*this));
+        while (!fin.eof())
+        {
+            if (id == BookID)
+            {
+                ShowBookData();
+                break;
+            }
+            else
+                count = 1;
+            fin.read((char *)this, sizeof(*this));
+        }
+        if (fin.eof() && count == 1)
+            cout << "\n Book ID Does Not Exist.";
+        fin.close();
+    }
+}
+
+void Book::UpdateBook()
+{
+    int id, count = 0;
+    cout << " Enter ID of Book you want to Update: ";
+    cin >> id;
+    fstream file;
+    file.open("fileBook.dat", ios::in | ios::out | ios::ate | ios::binary);
+    file.seekg(0);
+    file.read((char *)this, sizeof(*this));
+    while (!file.eof())
+    {
+        if (id == BookID)
+        {
+            cout << " Data found.\n Enter Updated Record.\n";
+            count = 1;
+            AddBookData();
+            file.seekp(file.tellp() - sizeof(*this));
+            file.write((char *)this, sizeof(*this));
+        }
+        file.read((char *)this, sizeof(*this));
+    }
+    if (file.eof() && count == 0)
+        cout << "\n Book Data Not Found.";
+    else
+        cout << "\n Book updated successfully\n";
+}
+void Book::DeleteBook()
+{
+    int id;
+    cout << " Enter ID of Book you want to delete: ";
+    cin >> id;
+    ifstream fin;
+    ofstream fout;
+    fin.open("fileBook.dat", ios::in | ios::binary);
+    if (!fin)
+        cout << "File not found";
+    else
+    {
+        fout.open("tempBook.dat", ios::out | ios::binary);
+        fin.read((char *)this, sizeof(*this));
+        while (!fin.eof())
+        {
+            if (id != BookID)
+            {
+                fout.write((char *)this, sizeof(*this));
+            }
+            fin.read((char *)this, sizeof(*this));
+        }
+        fin.close();
+        fout.close();
+        remove("fileBook.dat");
+        rename("tempBook.dat", "fileBook.dat");
+    }
+    cout << " Book deleted successfully.";
+}
+
+class JIIT
+{
+public:
+    Student *b1;
+    Professor *p1;
+    Book book;
+
+    void add()
+    {
+        b1 = new Student;
+        b1->getStudentData();
+        b1->storeStudent();
+    }
+    void view()
+    {
+        b1 = new Student;
+        b1->viewAllStudents();
+    }
+    void FindStud()
+    {
+        b1 = new Student;
+        b1->FindStudent();
+    }
+    void UpdateStud()
+    {
+        b1 = new Student;
+        b1->UpdateStudent();
+    }
+    void DelStud()
+    {
+        b1 = new Student;
+        b1->DeleteStudent();
+    }
+    void AddProf()
+    {
+        p1 = new Professor;
+        p1->AddProfessorData();
+        p1->storeProfessor();
+    }
+    void ShowProf()
+    {
+        p1 = new Professor;
+        p1->viewAllProfessor();
+    }
+    void FindProf()
+    {
+        p1 = new Professor;
+        p1->FindProfessor();
+    }
+    void UpdateProf()
+    {
+        p1 = new Professor;
+        p1->UpdateProfessor();
+    }
+    void DelProf()
+    {
+        p1 = new Professor;
+        p1->DeleteProfessor();
+    }
+    void AddBook()
+    {
+        book.AddBookData();
+        book.StoreBook();
+    }
+    void ShowBook()
+    {
+        book.ViewBook();
+    }
+    void UpdBook()
+    {
+        book.UpdateBook();
+    }
+    void findBook()
+    {
+        book.FindBook();
+    }
+    void DelBook()
+    {
+        book.DeleteBook();
+    }
+};
+
+int main()
+{
+    system("color B1");
+    cout << "\t\t\t\t\t\t\t******************************************************************************\n";
+    cout << "\t\t\t\t\t\t\t\t\t    WELCOME TO JAYPEE NOIDA SECTOR 62  \n";
+    cout << "\t\t\t\t\t\t\t******************************************************************************\n\n\n\n";
+
+    JIIT objJIIT;
+    int loop = 1, choice;
+
+    while (loop)
+    {
+        cout << "\n\n Press 1 for Student ";
+        cout << "\n Press 2 for Professor ";
+        cout << "\n Press 3 for Library ";
+        cout << "\n Press 4 to Exit. ";
+        cout << "\n Enter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            int choice2;
+
+            cout << "\n Press 1 to Add Student ";
+            cout << "\n Press 2 to Remove Student ";
+            cout << "\n Press 3 to Find Student  ";
+            cout << "\n Press 4 to Update Student  ";
+            cout << "\n Press 5 to Show Student List ";
+            cout << "\n Press 6 to Exit ";
+            cout << "\n Enter your choice: ";
+            cin >> choice2;
+
+            switch (choice2)
+            {
+            case 1:
+                objJIIT.add();
+                break;
+            case 2:
+                objJIIT.DelStud();
+                break;
+            case 3:
+                objJIIT.FindStud();
+                break;
+            case 4:
+                objJIIT.UpdateStud();
+                break;
+            case 5:
+                objJIIT.view();
+                break;
+            case 6:
+                exit(0);
+            }
+            break;
+
+        case 2:
+
+            cout << "\n Press 1 to Add Professor ";
+            cout << "\n Press 2 to Remove Professor ";
+            cout << "\n Press 3 to Find Professor  ";
+            cout << "\n Press 4 to Update Professor ";
+            cout << "\n Press 5 to Show Professor List ";
+            cout << "\n Press 6 to Exit ";
+            cout << "\n Enter your choice: ";
+            cin >> choice2;
+
+            switch (choice2)
+            {
+            case 1:
+                objJIIT.AddProf();
+                break;
+            case 2:
+                objJIIT.DelProf();
+                break;
+            case 3:
+                objJIIT.FindProf();
+                break;
+            case 4:
+                objJIIT.UpdateProf();
+                break;
+            case 5:
+                objJIIT.ShowProf();
+                break;
+            case 6:
+                exit(0);
+            }
+            break;
+        case 3:
+
+            cout << "\n Press 1 to Add Book ";
+            cout << "\n Press 2 to Remove Book ";
+            cout << "\n Press 3 to Find Book  ";
+            cout << "\n Press 4 to Update Book ";
+            cout << "\n Press 5 to Show Book ";
+            cout << "\n Press 6 to Exit ";
+            cout << "\n Enter your choice: ";
+            cin >> choice2;
+
+            switch (choice2)
+            {
+            case 1:
+                objJIIT.AddBook();
+                break;
+            case 2:
+                objJIIT.DelBook();
+                break;
+            case 3:
+                objJIIT.findBook();
+
+                break;
+            case 4:
+                objJIIT.UpdBook();
+                break;
+            case 5:
+                objJIIT.ShowBook();
+                break;
+            case 6:
+                exit(0);
+            }
+            break;
+        case 4:
+
+            exit(0);
+
+        default:
+            cout << " Wrong choice entered. Enter Again.\n";
+        }
+    }
+}
