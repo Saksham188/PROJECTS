@@ -1,0 +1,46 @@
+.payment
+{
+    background-color: white;
+}
+
+/* Target h1 inside parent container. */
+.payment_container >h1
+{
+  text-align: center; /*Isse Checkout center mein aajata*/
+  padding: 10px;
+  font-weight: 400;
+  background-color: rgb(234, 237, 237);
+  border-bottom: 1px solid lightgray;
+}
+
+/* Target the anchor tag of checkout (items) */
+.payment_container >h1 a
+{
+    text-decoration: none;
+    /* Isse link ke neeche ki line gayab. */
+}
+
+/* For payment section use display flexbox */
+.payment_section
+{
+    display: flex;
+    padding: 20px;
+    margin:0 20px;  /*Isse left right khisakre*/
+    border-bottom: 1px solid lightgray;
+}
+
+/* Now with flex we can say one element takes 20% ie 20% width, one takes 80% */
+.payment_title
+{
+    /* flex sets flexible length on flexible items. */
+    /* ie iska mtlb hoga ki jb page ki width change kroge toh jyada width 0.8 vale ko milegi and kam 0.2 vale ko. */
+    flex: 0.2;
+}
+
+/* Now address takes 80% of screen width and baki cheez lengi 80%. */
+.payment_address,.payment_items,.payment_details
+{
+    /* Isse payment items bhi 80% space lenge */
+    /* Payment details mein 0.8 krne se Cardelement screen pr dikhne lgega, ie card number and payment ka visible hogya. */
+    flex: 0.8;
+}

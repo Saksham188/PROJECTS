@@ -1,0 +1,33 @@
+.checkout
+{
+   display: flex;
+   padding: 20px; 
+   background-color: white;
+   height: max-content;
+   /* Isse jab tak content overflow ni hojata vo height lelega.eg 335 px pe overflow krra toh uske aage badhane pr bhi same rhega height 335 px */
+}
+
+.checkout_add
+{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.checkout_title
+{
+    margin-right: 10px;
+    padding: 10px;
+    border-bottom: 2px solid lightgrey;
+    /* Ye your shopping basket ke just neeche line banane ke lie. */
+}
+
+
+
+
+
+
+
+
+
+
+

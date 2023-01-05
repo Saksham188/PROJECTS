@@ -1,0 +1,96 @@
+/* Ye pure header box ke lie */
+.header
+{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    position: sticky; /*Isse header will be sticked to top*/
+    top: 0;
+    z-index: 100;
+}
+
+.header_logo
+{
+    width: 100px;
+    /* object-fit: Specifies how an <img> or <video> should be resized to fit its container */
+    object-fit: contain; /* The image keeps its aspect ratio, but is resized to fit within the given dimension*/
+    margin: 0 20px;
+    margin-top: 18px;
+}
+
+/* For alligning search button in line of search box we use display flex. */
+.header_search
+{
+    display: flex;
+    flex: 1; /*It helps us to streach the search box.*/
+    align-items: center;
+    border-radius: 25px;
+
+}
+
+.header_searchInput
+{
+    /* Isse jo input box hai search mein vo bada hojayega width mein */
+    height: 12px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+
+}
+
+.header_searchIcon
+{
+    /* Isse search ka icon dikhega */
+    padding: 5px;
+    height: 22px !important;
+    background-color: antiquewhite;
+}
+
+/* Ye sign in and un 3 options ke lie */
+.header_option
+{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* Abhi ye container se bahar leak out krra hai toh ham header_nav mein flex lagadenge and space evenly */
+    
+}
+
+/* Isse pure container ke andr equal space lelenge ie teeno options*/
+.header_nav
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Isse HelloGuest and dusre chote dikhenge */
+.header_optionLineOne
+{
+    font-size: 10px;
+}
+
+/* Isse Sign In Login bade dikhenge */
+.header_optionLineTwo
+{
+    font-size: 15px;
+    font-weight: 750;
+
+}
+
+/* Its for the Basket and count */
+.header_optionBasket
+{
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+/* Isse count mein space dene ke lie.*/
+.header_BasketCount
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}

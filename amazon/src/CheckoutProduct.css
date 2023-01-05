@@ -1,0 +1,52 @@
+.checkoutProduct
+{
+    /* Isse image left mein and uska data sara right mei esa aajega. */
+    display: flex;
+    margin-top: 20px; /*Isse image ko top se thoda space mil jayega.*/
+    margin-bottom: 20px;
+}
+
+/* Isse info and image mei space aajayega. */
+.CheckoutProduct_info
+{
+    padding-left: 20px;
+}
+
+/* Iska mtlb checkout product info ka button */
+.CheckoutProduct_info >button
+{
+    background: rgb(224, 174, 47);
+    border: 1px solid;
+    margin-top: 2px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: black;
+}
+
+/* Self Added. */
+/* .CheckoutProduct_info >button:hover
+{
+    border-radius: 2px;
+    border: none;
+    font-size: 17px;
+    font size se hover krne pr bada ho jayega link
+} */
+
+/* Isse image ka size alter krdo. */
+.checkoutProduct_image
+{
+    object-fit: contain;
+    height: 180px;
+    width: 180px;
+}
+
+/* Isse rating ko ek line mei lane ke lie */
+.CheckoutProduct_rating
+{
+    display: flex;
+}
+
+.CheckoutProduct_title
+{
+    font-size: 17px;
+    font-weight: 750;
+}
