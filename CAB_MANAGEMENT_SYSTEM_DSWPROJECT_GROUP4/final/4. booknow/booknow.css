@@ -1,0 +1,169 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+html, body {
+    max-width: 100%;
+    /* overflow: hidden; */
+    overflow-x:hidden;
+    overflow-y:visible;
+}
+.map{
+     margin-top:100px;
+    margin-right:50px; 
+    float:right;
+    border-radius: 25px;
+} 
+#bg{
+    background-image:linear-gradient(to right, rgba(245, 246, 252, 0.52), rgba(19, 117, 93, 0.73)),
+    url('book.jpg');
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    padding: 0px;
+}
+@media screen and (max-width: 100%) {
+    .map, .booknow {
+      width: 100%;
+      float:center;
+    /* The width is 100%, when the viewport is 800px or smaller */
+    }
+  }
+.book{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-1;
+    object-fit:cover;
+}
+  
+#book:hover{
+    background-color:white;
+}
+  
+.booknow{
+    margin-top:100px;
+    margin-right:500px;
+    margin-left:100px; 
+    width:480px;
+    background-color: rgb(236, 244, 252,0.3);
+    border-radius: 25px;
+    padding:30px;
+    padding-right: 20px;
+    overflow-x:hidden;
+      overflow-y:visible; 
+}
+  
+.booknow input,.booknow select{
+    margin: 23px;
+    padding: 10px;
+    border: none;
+    width: 70%;
+    background:none;
+    border-radius: 7px;
+}
+  
+.booknow .btn{
+    color:black;
+    padding: 8px 12px;
+    align-self:center;
+    width:50%;
+    text-align: center;
+    margin:0 0 0 25%;
+    font-size:20px;
+    border:none;
+    cursor:pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:bold;
+}
+  
+.booktop{
+    text-align: center;
+}
+  
+.booktop button{
+    width: 30%;
+    padding: 1px 6px 1px 6px;
+    color:rgb(16, 80, 80);
+    text-decoration: none;
+    border:none;
+    background:none;
+    text-align: center;
+    font-family: 'Zen Kurenaido', sans-serif;
+    border-radius: 10px;
+}
+  
+.booktop button:hover {
+    background-color: rgb(55, 124, 124);
+    color:white;
+    border-radius:10px;
+    opacity:0.4;
+}
+
+.booktop button:focus{
+    background-color: rgb(55, 124, 124);
+    color:white;
+    border-radius:10px;
+}
+
+/* .booktop #b1{
+    background-color: rgb(55, 124, 124);
+    color:white;
+    border-radius:10px;
+} */
+
+.line{
+    margin-top:10px;
+    border-top: 1px solid #80bbc0;
+    padding-top:10px;
+}
+  
+form{
+    display:grid;
+}
+  
+label{
+    font-family: 'Zen Kurenaido', sans-serif;
+}
+
+input:hover,select:hover{
+    border-bottom: 2px solid;
+    border-color:rgb(36, 100, 102);
+}
+  
+input:focus,select:focus{
+    outline:none;
+    background:rgb(212, 232, 236);
+}
+  
+input:focus::placeholder{
+    color:transparent;
+}
+  
+::placeholder{
+    color:rgb(36, 100, 102);
+}
+  
+#pickloc , #when ,#droploc , input{
+    border-bottom: 2px solid;
+    border-color:rgb(36, 100, 102);
+    border-radius:0;
+}
+  
+.btn:hover {
+    color: white;
+    background:rgb(36, 100, 102);
+}
+  
+.btn.active {
+    color: white;
+}
+#auto,#mini,#macro,#mini1,#macro1{
+    width:auto;
+    padding-right: none;
+}

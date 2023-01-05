@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Interface</title>
+    <link rel="stylesheet" href="driverinterface.css">
+    <script>
+        setInterval(myTimer, 1000);
+        
+        function myTimer() {
+        //   if availablity in driver table == 0 ,  call function to  display another block
+        }
+        </script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 62.5%;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    overflow: hidden;
+}
+
+.navbar{
+    position: fixed;
+    background-color:black;
+    width: 100%;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+}
+.navbar h4
+{
+    height: 100%;
+    align-content: center;
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    margin-right: 20px;
+    float: right;
+    margin-top: 13px;
+}
+#logobtn{
+   background-color:rgba(0, 0, 0, 0); 
+   font-size: 20px; 
+   height: 100%; 
+   font-family: 'Orbitron', sans-serif; 
+   color: white;
+   margin-left: 20px;
+}
+
+.logo{
+    height: 46px;
+    /* margin-right: calc(100% - 470.82px - 144.81px); */
+}
+.content{
+    height: 100vh;
+    background: rgb(25,209,179);
+background: linear-gradient(90deg, rgba(25,209,179,1) 0%, rgba(25,61,203,1) 57%, rgba(0,245,255,1) 100%);
+}
+.leftcon{
+    float: left;
+    height: 80vh;
+    width: 44vw;
+    margin-top: 15vh;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    background-color: rgb(174, 252, 245);
+    box-shadow: 5px 0 20px 0 rgb(43, 42, 42);
+    border-radius: 10px;
+}
+.rightcon{
+    overflow: hidden;
+    float: left;
+    height: 80vh;
+    width: 44vw;
+    margin-top: 15vh;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    background-color: rgb(175, 255, 168);
+    box-shadow: 5px 0 20px 0 rgb(31, 30, 30);
+    border-radius: 10px;
+}
+#logoutdiv{
+    position: fixed;
+    right: 10px;
+    top: 50px;
+}
+#logout{
+    margin: 5px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border: 2px solid black;
+    background-color: transparent;
+    border-radius: 10pxs;
+    font-family: 'Comic Neue', cursive;
+    
+}
+#logout:hover{
+    background-color: rgb(0, 0, 0);
+    color: rgb(113, 210, 255);
+    border: 2px solid black;
+}
+
+.lcdiv, .rcdiv{
+    margin: 20px;
+    height: calc(100% - 40px);
+    width: calc(100% - 40px);
+}
+/* #dvinfo{
+    background-color: rgba(128, 128, 128, 0.1);
+} */
+#dvinfo h1, #no_customer h1, #ride_end h1{
+    font-size: 20px;
+    font-weight: 900;
+}
+#dvinfo span, #no_customer span, #ride_end span{
+    font-size: 14px;
+}
+#ride_end span{
+    font-size: 18px;
+}
+#no_customer{
+    text-align: center;
+    padding-top: 200px;
+}
+#ride_end{
+    text-align: center;
+    padding-top: 150px;
+}
+#ncspan{
+    font-size: 30px;
+    font-weight: 600;
+}
+#dvspan{
+    font-weight: 600;
+}
+#driOTP, #otpbtn, #endbtn{
+    height: auto;
+    width: 70%;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;   
+}
+#otpdiv{
+    width: 100%;
+    text-align: center;
+}
+#otpbtn, #endbtn{
+    /* float: right; */
+    font-size: 16px;
+    width: auto;
+    border-radius: 0;
+    background-color: rgb(0, 255, 76);
+}
+#otpbtn:hover, #endbtn:hover{
+    background-color: yellow;
+}
+.lcdiv h1 
+{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+    text-align: center;
+}
+.lcdiv span 
+{
+    font-family: 'Comic Neue', cursive;
+    font-size: 30px;
+}
+.rcdiv h1 
+{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+    text-align: center;
+}
+.rcdiv span 
+{
+    font-family: 'Comic Neue', cursive;
+    font-size: 30px;
+}
+.navbar h4 
+{
+    font-family: 'Comic Neue', cursive;
+    font-size: 20px;
+    font-family: 100;
+}
+</style>
+<body>
+    <div class="navbar">                
+        <div id="logoicon">
+            <a class="logo" href="homepage.html">
+                <button id="logobtn" >Quick Cabs</button>
+            </a>
+            <h4>Hello, name</h4>            <!--change 'name' with driver's name using php-->
+        </div>
+    </div>
+    <div class="content">
+        <div id="logoutdiv">
+            <button id="logout" value="clicked" name="logout">LOG OUT</button>
+        </div>
+        <div class="leftcon">
+            <div class="lcdiv">
+                <div id="no_customer" style="display: block;">
+                    <h1>NO CUSTOMER ALLOCATED RIGHT NOW</h1>
+                    <br>
+                    <span>Please wait for a while.</span>
+                </div>
+                <div id="dvinfo" style="display: none;">
+                    <br><br>
+                    <h1>PASSENGERS INFO</h1>
+                    <br>
+                    <span>Passenger's Name: </span>
+                    <span id="dvspan">*insert using php*</span><br>
+                    <span>Contact: </span>
+                    <span id="dvspan">*insert using php*</span><br>
+                    <span>Pick Up: </span>
+                    <span id="dvspan">*insert using php*</span><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <h1>Enter OTP below:</h1>
+                    <br><br><br><br><br>
+                    <div id="otpdiv">
+                        <input type="number" id="driOTP" name="driOTP" placeholder="XXXXXX"><br><br>
+                        <button id="otpbtn" value="clicked" name="otpbtn">Click to start</button>
+                    </div>
+                    <br><br>
+                </div>
+                <div id="ride_end" style="display: none;">
+                    <h1>RIDE STARTED</h1>
+                    <br>
+                    <span>Drop Location: </span>
+                    <span id="dvspan">*using php*</span><br>
+                    <br><br><br><br><br>
+                    <span>Have you reached your destination? </span>
+                    <button id="endbtn" value="clicked" name="endbtn">End drive</button>
+                </div>
+            </div>
+        </div>
+        <div class="rightcon">
+            <!-- <p id="rcdivp" style="font-size: 20px;"></p>
+            <p style="font-size: 20px;">TimeInterval example</p> -->
+            
+            <div class="rcdiv">
+                <div id="dvinfo">
+                    <br><br>
+                    <h1>PERSONAL INFO</h1>
+                    <br>    
+                    <span>Name: </span>
+                    <span id="dvspan">*insert using php*</span><br>
+                    <span>Phone: </span>
+                    <span id="dvspan">*insert using php*</span><br>
+                    <span>Licence No: </span>
+                    <span id="dvspan">*insert using php*</span><br>
+                    <br><br>
+                    <h1>CAR INFO</h1>
+                    <br>    
+                    <span>Car Model: </span>
+                    <span id="dvspan">*insert using php*</span><br>
+                    <span>Car Number: </span>
+                    <span id="dvspan">*insert using php*</span><br>
+                    
+                    <br><br><br><br><br>
+                    <h1>Instructions</h1>
+                    <span>1. Do not drink and drive.</span><br>
+                    <span>2. Always carry your driving licence and car documents.</span><br>
+                    <span>3. Follow all COVID-19 precautions carefully.</span>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>    
+                    <span>For any problem, contact us at 9184818341 or mail us at admin@quickcabs.com</span>
+                    <br><br><br>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

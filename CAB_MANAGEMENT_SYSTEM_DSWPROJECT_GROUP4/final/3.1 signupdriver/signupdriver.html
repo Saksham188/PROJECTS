@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/3c15d414ce.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <title>signupdriver</title>
+    <!-- <script src="index.js"></script>            JAVASCRIPT -->
+</head>
+<script>
+    function validateForm()
+{
+  let un = document.forms["myForm"]["name"].value;
+  var letters = /^[A-Za-z\s]+$/;
+  if (un == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  if(!un.match(letters))
+  {
+    alert("Name must contain only alphabets");
+    return false;  
+  }
+  let d=document.forms["myForm"]["driverid"].value;
+  if(d.length <6 || d.length>20)
+    {
+        alert("Driver Id should have minimun 6  and maximum 20 charaters!");
+    return false;
+    }
+
+
+  let p = document.forms["myForm"]["password"].value;
+  if (p == "") {
+    alert("Password must be filled out");
+    return false;
+  }
+  if(p.length < 5 || p.length >25)
+    {
+        alert("Password must be of length 25 charaters and not less than 5 charaters");
+        return false;
+    }
+    let l = document.forms["myForm"]["license"].value;
+    if(l.length !=10)
+    {
+        alert("License number must be of 10 digit!");
+    return false;  
+    }
+    let p1= document.forms["myForm"]["phone"].value;
+    if(p1.length!=10)
+    {
+        alert("Phone number must have 10 digits!");
+        return false;
+    }
+   
+
+}
+</script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100&display=swap');
+    *{
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+body{
+    overflow-x: hidden;
+}
+.container{
+    padding: 50px;
+    font-size: 15px;
+    text-align: center;
+    flex-direction: column;
+    min-height: 100vh; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.cen{
+    margin-top:25px;
+}
+
+a:hover{
+    text-decoration: none;
+    color: rgb(36, 100, 102);
+}
+
+::placeholder{
+    color:rgb(36, 100, 102);
+}
+
+input{
+    margin: 23px;
+    padding: 10px;
+    border: none;
+    width: 30%;
+    background:none;
+    border-radius: 7px;
+}
+    
+input:hover{
+    border-bottom: 2px solid;
+    border-color:rgb(36, 100, 102);
+}
+  
+input:focus{
+    outline:none;
+    background:rgb(212, 232, 236);
+}
+  
+input:focus::placeholder{
+    color:transparent;
+}
+
+.btn{
+    color:black;
+    padding: 8px 12px;
+    text-align: center;
+    width:100px;
+    text-align: center;
+    font-size:20px;
+    border:none;
+    cursor:pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:bold;
+}
+
+.btn:hover {
+    color: white;
+    background:rgb(36, 100, 102);
+}
+a
+   {
+       text-decoration: none;
+   }
+    .navbar
+    {
+        background-color: rgb(19, 18, 18);
+        z-index: 999;
+        
+    }
+   .nav-link
+   {
+       color:white;
+       font-family: 'Comic Neue', cursive;
+       margin-right:4px;
+   }
+   .nav-link:hover
+   {
+       color:rgba(255, 255, 255, 0.888);
+       border:1.5px solid rgba(255, 255, 255, 0.888);
+       border-radius:20px;
+       padding:2px 1px;
+   }
+
+   .logo1
+   {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+   }
+   
+   .logo1:hover
+   {
+       color: rgba(255, 255, 255, 0.888);
+   }
+   
+   .book
+   {
+       border-radius:0px;
+       border:2px solid white;
+       background-color:transparent;
+       color:white;
+       margin-left: 10px;
+       margin-right: 10px;
+   }
+   .book:hover
+   {
+     background-color: rgba(255, 255, 255, 0.888);
+     color:black;
+     border-radius:0px;
+     padding:9px 1px;
+   }
+   .login1
+   {
+      width: 90px;
+      text-align: center;
+
+   }
+   footer{
+    position:bottom;
+    bottom: 0;
+    background: #111;
+    height: auto;
+    left:0;
+    right:0;
+    width: 100%;
+    font-family: "Open Sans";
+    padding-top: 40px;
+    flex-basis: 100px;
+    color: #fff;
+}
+
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6.4px;
+    margin: 16px 0 48px 0;
+}
+.socials li{
+    margin: 0px 7px;    
+    padding: 3px 8px;
+    text-align: center;
+    align-items: center;
+}
+
+.socials li:hover{
+    display: inline-block;
+    background-color: black;
+    border-radius: 50px;
+    height: 14px;
+    width: 14px;
+}
+
+.socials a{
+    text-decoration: none;
+    color: #fff;
+}
+.socials a i {
+    font-size: 17.6px;
+    transition: color .4s ease;
+    align-items: center;
+    text-align: center;
+}
+
+.socials a:hover i{
+    color: rgb(196, 161, 7);
+    align-items: center;
+}
+
+.footer-bottom{
+    background: #000;
+    width: 100vw;
+    padding: 20px 0;
+    text-align: center;
+}
+.footer-bottom p{
+    font-size: 14px;
+    word-spacing: 2px;
+    margin: 1em 0;
+    text-transform: capitalize;
+}
+
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+    font-size: 14px;
+}
+
+
+</style>
+<body>
+    <section>
+        <div>
+            <nav class="navbar navbar-expand-lg back">
+                <div class="container-fluid">
+                    <a class="navbar-brand logo1" href="#">Quicks Cab</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto ">
+                            <li class="nav-item">
+                                <a class="nav-link book" href="">Sign-Up</a>
+                            </li>
+    
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+    <div class="container">
+        <div class="cen"><a href="../1. homepage/homepage.html">
+            <img src="./logo.jpg" alt="logo" width="300"></a><br>
+            <form action="signupdriver.php" method="post" name="myForm" onsubmit="return validateForm()" >
+                <input type="text" name="name" required id="name" placeholder="Enter your Full name"><br>
+                <input type="text" name="driverid"  required id="driverid" placeholder="Enter ID name"><br>
+                <input type="password" name="password"  required id="password" placeholder="Set password"><br>
+                <input type="text" name="address" id="address" required placeholder="Address"><br>
+                <input type="int" name="license" id="license"required placeholder="License Number"><br>
+                <input type="text" name="phone" id="phone" required placeholder="Phone number"><br>
+                <input class="btn" type="submit" name="Sign-up2" value="Sign up"> 
+                <!-- <button class="btn">Sign up</button></div> -->
+            </form>
+            
+        </div>
+</div>
+<footer class="footer" id="footer">
+    <ul class="socials">
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+        <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+    </ul>
+<div class="footer-bottom">
+    <p>copyright &copy;2021 QuickCabs. designed by <span>Manika Aditi Saksham Shubh Muskan</span></p>
+</div>
+</footer> 
+</body>
+</html>

@@ -1,0 +1,325 @@
+<?php session_start();
+    $un=$_SESSION['username'];  ///Its User Id for user.
+    $_SESSION['$un']=$un;
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bookquickcabs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="booknow.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+
+    <script src="booknow.js"></script> 
+    <body>
+        
+        <img id= bg class= book  width="150"> 
+        <div class=map>
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1fi03DYsxD8civD9CtXDiH9S5jCLvdjsm&ehbc=2E312F" width="640" height="480"></iframe>
+            </div>
+            <div class=booknow>
+                <div class=booktop>
+                        <button style="background-color: rgb(55, 124, 124); color:white;" id="b1" onclick="b1clicked()">CITY TAXI</button>
+                        <button id="b2" onclick="b2clicked()">OUTSTATION</button>
+                        <button id="b3" onclick="b3clicked() " style="display: none;"></button>
+                </div>
+                <div class= line></div>
+                <div >
+                    <div id="ctform" style="display: block;">
+                        
+                        <form action="booknowfinal.php" method="POST">
+                            <label for="pickloc">PICKUP</label>
+                            <select id="places1" name="places1" onclick="calculatect()" >
+                            
+                            <option value='-1' default >SELECT</option>
+                            <option value='1'>"worlds of wonder, Sector 38 A, Noida"</option>
+                            <option value='2'>"noida golf course,Sector 38, Noida,"</option>
+                            <option value='3'>"brahmaputra market,Sector 29, Noida"</option>
+                            <option value='4'>"stupa 18 gallery,Sector 25, Yamuna Expressway(Greater Noida)"</option>
+                            <option value='5'>"buddh international circuit,Sector 38, Noida,"</option>
+                            <option value='6'>"botanic garden of indian republic,Sector 38, Noida"</option>
+                            <option value='7'>"okhla bird sanctuary,Sector 95, Noida"</option>
+                            <option value='8'>"Rashtriya Dalit Prerna Sthal and Green Garden, Noida,Sector 95, Noida"</option>
+                            <option value='9'>"Smaaash, Noida,DLF Mall of India, Sector 18"</option>
+                            <option value='10'>"Snow World, Noida,DLF Mall of India, Sector 18, Noida	"</option>
+                            <option value='11'>"Kidzania, Noida,The Great India Place, Sector 38 A, Noida"</option>
+                            <option value='12'>"The Grand Venice Mall, Noida,Near Pari Chowk, Greater Noida"</option>
+                            <option value='13'>"The Great India Place, Noida,Near Pari Chowk, Greater Noida"</option>
+                            <option value='14'>"Atta Market, Noida,Near Pari Chowk, Greater Noida"</option>
+                            <option value='15'>"Appu Ghar Express, Noida,The Great India Place, Sector 38, Noida</option></select>
+                            <!-- <input id="pickloc" type="text" name="pickloc" id="pickloc" placeholder="Pickup location"><br> -->
+                            <label for="droploc">DROP IN CITY</label>
+
+                            <select id="places2" name="places2" onclick="calculatect()">
+                                <option value='-1' default>SELECT</option>
+                            <option value='1'>"worlds of wonder, Sector 38 A, Noida"</option>
+                            <option value='2'>"noida golf course,Sector 38, Noida,"</option>
+                            <option value='3'>"brahmaputra market,Sector 29, Noida"</option>
+                            <option value='4'>"stupa 18 gallery,Sector 25, Yamuna Expressway(Greater Noida)"</option>
+                            <option value='5'>"buddh international circuit,Sector 38, Noida,"</option>
+                            <option value='6'>"botanic garden of indian republic,Sector 38, Noida"</option>
+                            <option value='7'>"okhla bird sanctuary,Sector 95, Noida"</option>
+                            <option value='8'>"Rashtriya Dalit Prerna Sthal and Green Garden, Noida,Sector 95, Noida"</option>
+                            <option value='9'>"Smaaash, Noida,DLF Mall of India, Sector 18"</option>
+                            <option value='10'>"Snow World, Noida,DLF Mall of India, Sector 18, Noida	"</option>
+                            <option value='11'>"Kidzania, Noida,The Great India Place, Sector 38 A, Noida"</option>
+                            <option value='12'>"The Grand Venice Mall, Noida,Near Pari Chowk, Greater Noida"</option>
+                            <option value='13'>"The Great India Place, Noida,Near Pari Chowk, Greater Noida"</option>
+                            <option value='14'>"Atta Market, Noida,Near Pari Chowk, Greater Noida"</option>
+                            <option value='15'>"Appu Ghar Express, Noida,The Great India Place, Sector 38, Noida</option>
+                            </select>
+                            <!-- <input id="droploc" type="text" name="droploc" id="droploc" placeholder="Drop location"><br> -->
+                            
+                            <div style="margin:0 auto">
+                                <input type="radio" id="auto" value="auto" name="vehicle" onclick="calculatect()">AUTO
+                            <input type="radio" id="mini" value="mini" name="vehicle" onclick="calculatect()">MINI
+                            <input type="radio" id="macro" value="macro" name="vehicle" onclick="calculatect()">MACRO
+                            </div>
+                            
+                            <input type="submit" class="btn" name="Bookct" value="GO!!">
+                            <!-- <button class="btn" name="Bookct">Go!!</button> -->
+                        </form>
+
+                    </div>
+                    <div id="osform" style="display: none;">
+                        <form action="booknowfinal.php" method="POST">
+                            <label for="pickloc">PICKUP</label>
+                            <select id="places3" name="places3" onclick="calculateot()">
+                                <option value='-1' default>SELECT</option>
+                            <option value='0'>"Gaziabad"</option>
+                            <option value='1'>"Faridabad"</option>
+                            <option value='2'>"Dadri"</option>
+                            <option value='3'>"New Delhi"</option>
+                            <option value='4'>"Dasna"</option>
+                            <option value='5'>"Loni"</option>
+                            <option value='6'>"Dankaur"</option>
+                            <option value='7'>"Muradnagar"</option>
+                            <option value='8'>"Sikandrabad"</option>
+                            <option value='9'>"Pilkhuwa"</option>
+                            <option value='10'>"Faridnagar"</option>
+                            <option value='11'>"Nangloi Jat"</option>
+                            <option value='12'>"Gurgaon"</option>
+                            <option value='13'>"Agra"</option>
+                            </select>
+                            <!-- <input id="pickloc" type="text" name="pickloc" id="pickloc" placeholder="Pickup location"><br> -->
+                            
+                            <label for="droploc">DROP OUTSTATION</label>
+                            <select id="places4" name="places4" onclick="calculateot()">
+                                <option value='-1' default>SELECT</option>
+                                <option value='0'>"Gaziabad"</option>
+                            <option value='1'>"Faridabad"</option>
+                            <option value='2'>"Dadri"</option>
+                            <option value='3'>"New Delhi"</option>
+                            <option value='4'>"Dasna"</option>
+                            <option value='5'>"Loni"</option>
+                            <option value='6'>"Dankaur"</option>
+                            <option value='7'>"Muradnagar"</option>
+                            <option value='8'>"Sikandrabad"</option>
+                            <option value='9'>"Pilkhuwa"</option>
+                            <option value='10'>"Faridnagar"</option>
+                            <option value='11'>"Nangloi Jat"</option>
+                            <option value='12'>"Gurgaon"</option>
+                            <option value='13'>"Agra"</option>
+                            </select>
+                            <!-- <input id="droploc" type="text" name="droploc" id="droploc" placeholder="Drop location"><br> -->
+                            <div style="margin:0 auto">
+                            <input type="radio" id="mini1" value="mini" name="vehicle" onclick="calculateot()">MINI
+                            <input type="radio" id="macro1" value="macro" name="vehicle" onclick="calculateot()">MACRO
+                            </div>
+                            <input type="submit" class="btn" name="Bookos" value="GO!!">
+
+                            <!-- <button class="btn" >Go!!</button> -->
+                            
+                        </form>
+                    </div>
+                    <!-- <div id="rtform" style="display: none;">
+                        <form>
+                            <label for="pickloc">PICKUP</label>
+                            <div style="margin:0 auto">
+                                <input id="pickloc" type="text" name="pickloc" id="pickloc" placeholder="Pickup location"><br>
+                            <input type="radio" id="auto" value="auto" name="vehicle" onclick="calculate()">AUTO
+                            <input type="radio" id="mini" value="mini" name="vehicle" onclick="calculate()">MINI
+                            <input type="radio" id="macro" value="macro" name="vehicle" onclick="calculate()">MACRO
+                            </div>
+                            
+                            <button class="btn">Go!!</button>
+                        
+                            
+                        </form>
+                    </div> -->
+                </div>
+                <!-- <p id="demo1">Distance (in km)</p>-->
+                <p id="distance"></p>
+                <p id="demo"></p>
+                <p id="amt"></p>
+            </div>
+
+            <div id="abj" style="display: none;">
+            <p id="abcjs"></p>
+                <!-- <input type="text" id="abcjs" name="abcjs">  -->
+            </div>
+    </body>
+    <script>
+        function check()
+        {
+            var select1 = document.getElementById("places1").value;
+            var select2 = document.getElementById("places2").value;
+            if(select1==-1 || select2==-1 )
+            {
+                return false;
+            }
+            if(select1==select2)
+            {
+                return false;
+            }
+            return true;
+        }
+            var select1=0,select2=0;
+        function efgh()
+        {
+            var coord1={
+                10:[28.4089123],11:[77.3177894],
+                20:[28.5526],21:[77.5548],
+                30:[28.6139],31:[77.2090],
+                40:[28.6807],41:[77.5218],
+                50:[28.7334],51:[77.2986],
+                60:[28.3477],61:[77.5533],
+                70:[28.7718],71:[77.5075],
+                80:[28.4511],81:[77.6955],
+                90:[28.7083],91:[77.6565],
+                100:[28.7706],110:[77.6250],
+                110:[28.6820],111:[77.0676],
+                120:[28.4595],121:[77.0266],
+                130:[27.1767],131:[78.0081]
+            }
+            select1 = document.getElementById("places3").value;
+            select2 = document.getElementById("places4").value;
+            var x=coord1[(select1*10)];
+            var y=coord1[(select1*10)+1];
+            var x1=coord1[(select2*10)];
+            var y1=coord1[(select2*10)+1];
+            
+            var R = 6371; 
+            var dLat = (x1-x)*(Math.PI/180); 
+            var dLon = (y1-y)*(Math.PI/180); 
+            var a = Math.sin(dLat/2) * Math.sin(dLat/2) +Math.cos((x)*(Math.PI/180)) * Math.cos((x1)*(Math.PI/180)) * Math.sin(dLon/2) * Math.sin(dLon/2) ; 
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            var d = R * c; 
+            return d.toFixed(2);
+        }
+        function abcd()
+        {
+            var coord={
+                10:[28.56748],11:[77.32400],
+                20:[28.56756],21:[77.34689],
+                30:[28.57042],31:[77.33265],
+                40:[28.53337],41:[77.37598],
+                50:[28.45968],51:[77.46396],
+                60:[28.56142],61:[77.32978],
+                70:[28.55344],71:[77.32044],
+                80:[28.56804],81:[77.31160],
+                90:[28.56748],91:[77.324],
+                100:[28.56748],101:[77.324],
+                110:[28.56523],111:[77.31755],
+                120:[28.46539],121:[77.51166],
+                130:[27.21998],131:[77.95042],
+                140:[28.46411],141:[77.50966],
+                150:[28.46108],151:[77.071892]
+            }
+            
+            select1 = document.getElementById("places1").value;
+            select2 = document.getElementById("places2").value;
+            var x=coord[(select1*10)];
+            var y=coord[(select1*10)+1];
+            var x1=coord[(select2*10)];
+            var y1=coord[(select2*10)+1];
+            
+            var R = 6371; 
+            var dLat = (x1-x)*(Math.PI/180); 
+            var dLon = (y1-y)*(Math.PI/180); 
+            var a = Math.sin(dLat/2) * Math.sin(dLat/2) +Math.cos((x)*(Math.PI/180)) * Math.cos((x1)*(Math.PI/180)) * Math.sin(dLon/2) * Math.sin(dLon/2) ; 
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            var d = R * c; 
+            return d.toFixed(2);
+        }
+        function calculateot()
+        {
+            var d=efgh();
+            document.getElementById("distance").innerHTML="Distance (in km):"+d;
+            if(document.getElementById("mini1").checked){
+                x=500;
+                var price=x*d+150;
+            document.getElementById("amt").innerHTML="Calculated Fair (in Rs):"+price.toFixed(2);
+            }
+            else if(document.getElementById("macro1").checked){
+                x=700;
+                var price=x*d+170;
+            document.getElementById("amt").innerHTML="Calculated Fair (in Rs):"+price.toFixed(2);
+            }
+            else
+            {
+            document.getElementById("amt").innerHTML="<span style='color: red;'>All fields are required</span>";
+            }
+        }
+        
+        function calculatect()
+        {
+            var prices=0;
+
+            var d=abcd();
+            document.getElementById("distance").innerHTML="Distance (in km):"+d;
+            if(document.getElementById("auto").checked){
+                x=30;
+                var price=x*d+90;
+                prices=price;
+            document.getElementById("amt").innerHTML="Calculated Fair (in Rs):"+price.toFixed(2);
+            console.log(prices);
+
+            }
+            else if(document.getElementById("mini").checked){
+                x=50;
+                var price=x*d+100;
+                prices=price;
+
+            document.getElementById("amt").innerHTML="Calculated Fair (in Rs):"+price.toFixed(2);
+            console.log(prices);
+    
+             }
+            else if(document.getElementById("macro").checked){
+                x=70;
+                var price=x*d+150;
+                prices=price;
+
+            document.getElementById("amt").innerHTML="Calculated Fair (in Rs):"+price.toFixed(2);
+            console.log(prices);
+
+            }
+            else
+            {
+            document.getElementById("amt").innerHTML="<span style='color: red;'>All fields are required</span>";
+            }
+            
+            <?php 
+            
+                        $amto="<script>document.write(prices);</script>";
+
+                        $_SESSION['amt1'] = $amto;
+                        // $_SESSION['amt1']=123;
+            ?>
+        }
+        
+        // document.getElementById("demo1").innerHTML=select1;
+        // document.getElementById("demo2").innerHTML=select2;
+        
+    </script>
+    
+</head>
+</html>
