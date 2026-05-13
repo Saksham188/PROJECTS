@@ -1,0 +1,19 @@
+Autoscaling in distributed systems relies on monitoring CPU, memory, and request latency to add or remove instances. When traffic spikes, the orchestrator increases replica counts and rebalances traffic through the load balancer to prevent saturation.
+
+Caching layers such as Redis or CDN edge nodes absorb repeated reads during peak hours. By reducing database hits, caches lower tail latency and help the system maintain throughput under bursty load.
+
+Message queues decouple producers from consumers. During peak load, the queue grows while consumers scale out to drain it, smoothing spikes and protecting downstream services from overload.
+
+Circuit breakers and rate limiters protect critical services from cascading failures. When upstream traffic exceeds safe thresholds, the system sheds load gracefully and prevents resource exhaustion.
+
+Vector databases store embeddings and use approximate nearest neighbor indexes. HNSW and IVF indexes trade accuracy for speed, which is useful for large-scale semantic search workloads.
+
+Batch processing pipelines often run during off-peak windows to reduce contention with online traffic. Job schedulers can throttle heavy tasks when latency SLOs are at risk.
+
+Observability stacks combine metrics, logs, and traces. During peak load, dashboards highlight saturation, error rates, and p99 latency so operators can scale and tune bottlenecks quickly.
+
+Database sharding distributes data across nodes to increase write throughput. When shards become hot, rebalancing or adding shards distributes peak load more evenly.
+
+Backpressure mechanisms signal producers to slow down when consumers are overloaded. This prevents runaway memory usage and helps maintain stability during traffic surges.
+
+Graceful degradation keeps core features available by disabling non-critical components. For example, recommendations might be turned off during peak load to preserve checkout performance.
